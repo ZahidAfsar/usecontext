@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePageComponenent from './components/HomePageComponenent.js';
+import ProfilePageComponent from './components/ProfilePageComponent.js';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+  <BrowserRouter>
+  {/* Wrapping our application in browserRoute to enable Routing */}
+  <Routes>
+    {/* '/' determands our homepage our are default rendered page */}
+   <Route path='/' element={<HomePageComponenent/>} />
+    <Route path='/profile' element={<ProfilePageComponent/>} />
+  </Routes>
+  </BrowserRouter>
+   </>
   );
 }
 
