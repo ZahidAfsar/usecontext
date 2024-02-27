@@ -1,13 +1,16 @@
 // rafce react arrow function component export
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import  Button  from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { getUserData } from '../Services/DataServices.js';
+import UserContext from '../Context/UserContext.js';
 
 const HomePageComponenent = () => {
 
 const [userInfo, setUserInfo] = useState({}); //userInfo is state Variable set to an empty object
 const [newPerson, setNewPerson] = useState(true); //newPerson is a state variable set to a boolean value
+
+let data = useContext(UserContext); // useContext takes in the parameter of Context (userContext) and we're storing the values inside of data
 
 const naviagte = useNavigate();  // Reacts-router-dom method for changing URL Locations 
 
@@ -21,6 +24,9 @@ useEffect(() => {
         const fetchedData = await getUserData();
         console.log(fetchedData);
         setUserInfo(fetchedData);
+
+        // we're passing in fetchedData through our setter function to set the value of user to our fetched data 
+        data.setUser(fetchedData);
     }
 
     getData();
